@@ -4,6 +4,8 @@
  */
 package sio.paris2024.model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author zakina
@@ -12,7 +14,10 @@ public class Athlete {
     
     private int id;
     private String nom ;
+    private String prenom;
+    private LocalDate datenaiss;
     private Pays pays ;
+    
     public Athlete() {
     }
 
@@ -36,7 +41,23 @@ public class Athlete {
     public void setNom(String nom) {
         this.nom = nom;
     }
+    
+    public String getPrenom() {
+        return prenom;
+    }
+    
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 
+    public LocalDate getDateNaiss() {
+        return datenaiss;
+    }
+    
+    public void setDateNaiss(LocalDate datenaiss) {
+        this.datenaiss = datenaiss;
+    }
+    
     public Pays getPays() {
         return pays;
     }
