@@ -38,7 +38,7 @@ public class ServletSport extends HttpServlet {
         try {
             System.out.println("INIT SERVLET=" + cnx.getSchema());
         } catch (SQLException ex) {
-            Logger.getLogger(ServletAthlete.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletSport.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -89,6 +89,15 @@ public class ServletSport extends HttpServlet {
             ArrayList<Sport> lesSports = DaoSport.getLesSports(cnx);
             request.setAttribute("sLesSports", lesSports);
            getServletContext().getRequestDispatcher("/vues/sport/listerSports.jsp").forward(request, response);
+        }
+        
+        if(url.equals("/paris2024/ServletSport/consulter"))
+        { 
+            int idSport = Integer.parseInt((String)request.getParameter("idSport"));
+            Sport s = DaoSport.getSportById(cnx, idSport);
+            request.setAttribute("sSport", s);
+            //System.out.println("lister eleves - nombres d'élèves récupérés" + lesEleves.size() );
+           getServletContext().getRequestDispatcher("/vues/sport/consulterSports.jsp").forward(request, response);
         }
         
     }
