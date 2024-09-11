@@ -46,4 +46,28 @@ public class DaoSport {
         return lesSports;
     }
     
+    public static Sport getSportById(Connection cnx, int idSport){
+        
+        Sport s = new Sport();
+        try{
+            requeteSql = cnx.prepareStatement("select s.id as s_id, s.libelle as s_libelle from sport s where s.id = ?");;
+            //System.out.println("REQ="+ requeteSql);
+            requeteSql.setInt(1, idSport);
+            resultatRequete = requeteSql.executeQuery();
+            
+            if (resultatRequete.next()){
+                
+                   s.setId(resultatRequete.getInt("s_id"));
+                   s.setLibelle(resultatRequete.getString("s_libelle"));
+                
+            }
+           
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("La requête de getLesPompiers e généré une erreur");
+        }
+        return s;
+    }
+    
 }
