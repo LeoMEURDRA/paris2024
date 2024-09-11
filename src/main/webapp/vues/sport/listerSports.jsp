@@ -39,7 +39,7 @@
 	</nav>
     <body>
        <div class="container special">
-            <h2 class="h2">Liste des athlètes</h2>
+            <h2 class="h2">Liste des sports</h2>
 		<div class="table-responsive">
                 <%
                     ArrayList<Sport> lesSports = (ArrayList)request.getAttribute("sLesSports");
@@ -60,7 +60,7 @@
                                 out.println(s.getId());
                                 out.println("</td>");
 
-                                out.println("<td>");
+                                out.println("<td><a href ='../ServletSport/consulter?idSport="+ s.getId()+ "'>");
                                 out.println(s.getLibelle());
                                 out.println("</a></td>");
                                
