@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="sio.paris2024.model.Sport"%>
+<%@page import="sio.paris2024.model.Athlete"%>
+<%@page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,14 +22,24 @@
     </head>
     <body>
         <%
-                Sport s = (Sport)request.getAttribute("sSport");
+            Sport s = (Sport)request.getAttribute("sSport");
+            ArrayList<Athlete> lesAthletes = (ArrayList<Athlete>)request.getAttribute("aLesAthletes");
         %>
-        <h1><%  out.println(s.getLibelle());%></h1>
-            
-                         
-            <table>
+        <h1><%  out.println(s.getLibelle());%></h1>  
+        <h2>Athlètes pratiquant ce sport :</h2>
+        <table border="1">
             <tr>
-                <td>Id: </td><td><%  out.println(s.getId());%></td>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
             </tr>
+            <% for (Athlete a : lesAthletes) { %>
+                <tr>
+                    <td><a href='../ServletAthlete/consulter?idAthlete=<%= a.getId() %>'><%= a.getNom() %></a></td>
+                    <td><%= a.getPrenom() %></td>
+                    <td><%= a.getDateNaiss() %></td>
+                </tr>
+            <% } %>
         </table>
+    </body>   
 </html>
