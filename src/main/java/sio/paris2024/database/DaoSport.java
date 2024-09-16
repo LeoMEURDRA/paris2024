@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sio.paris2024.model.Athlete;
 import sio.paris2024.model.Sport;
 
 /**
@@ -68,6 +69,29 @@ public class DaoSport {
             System.out.println("La requête de getLesPompiers e généré une erreur");
         }
         return s;
+    }
+    
+    public static ArrayList<Athlete> getAthletesBySport(Connection cnx, int idSport) {
+        ArrayList<Athlete> lesAthletes = new ArrayList<Athlete>();
+        try {
+            requeteSql = cnx.prepareStatement("select a.id as a_id, a.nom as a_nom, a.prenom as a_prenom, a.datenaiss as a_datenaiss from athlete a inner join sport s on a.sport_id = s.id inner join pays p on a.pays_id = p.id where a.sport_id = ?");
+            requeteSql.setInt(1, idSport);
+            resultatRequete = requeteSql.executeQuery();
+
+            while (resultatRequete.next()) {
+                Athlete a = new Athlete();
+                a.setId(resultatRequete.getInt("a_id"));
+                a.setNom(resultatRequete.getString("a_nom"));
+                a.setPrenom(resultatRequete.getString("a_prenom"));
+                a.setDateNaiss(resultatRequete.getDate("a_datenaiss").toLocalDate());
+                
+                lesAthletes.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("La requête de getAthletesBySport a généré une erreur");
+        }
+        return lesAthletes;
     }
     
 }
