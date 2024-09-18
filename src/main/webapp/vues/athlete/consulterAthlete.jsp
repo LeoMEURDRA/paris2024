@@ -12,31 +12,59 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PARIS 2024</title>
+        <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+        <title>Paris 2024</title>
+        <style>
+            body {
+		padding-top: 50px;
+            }
+                .special {
+		padding-top:50px;
+	}
+        </style>
     </head>
     <body>
-        <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>PARIS 2024</title>
-    </head>
-    <body>
-        <%
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a  href ='../ServletAthlete/lister' class="navbar-brand" href=".">Système de gestion des athlètes</a>
+		</div>
+            </div>
+	</nav>
+        <div class="container special">
+            <%
                 Athlete a = (Athlete)request.getAttribute("pAthlete");
-        %>
-        <h1><%  out.println(a.getNom());%></h1>
-            
-                         
-            <table>
-            <tr>
-                <td>Id: </td><td><%  out.println(a.getId());%></td>
-            </tr>
-            <tr>
-                <td>Prénom : </td><td><%  out.println(a.getPrenom());%></td>
-            </tr>
-            <tr>
-                <td>Date de naissance : </td><td><%  out.println(a.getDateNaiss());%></td>
-            </tr>
-            <tr>
-                <td>Pays : </td><td><%  out.println(a.getPays().getNom());%></td>
-            </tr>
-        </table>
+            %>
+            <h2 class="h2"><%  out.println(a.getNom());%></h2>
+            <table class="table table-striped table-sm"> 
+                <thead>
+                    <tr>             
+                        <th>ID</th>
+                        <th>Prénom</th>   
+                        <th>Date de naissance</th>               
+                        <th>Pays</th>                
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>           
+                        <td>
+                            <%out.println(a.getId());%>
+                        </td>
+                        <td>
+                            <%out.println(a.getPrenom());%>
+                        </td>    
+                        <td>
+                            <%out.println(a.getDateNaiss());%>
+                        </td>
+                        <td>
+                            <%out.println(a.getPays().getNom());%>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>
