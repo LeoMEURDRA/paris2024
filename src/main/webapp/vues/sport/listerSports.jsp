@@ -16,9 +16,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
-        
         <title>Paris 2024</title>
-
         <style>
             body {
 		padding-top: 50px;
@@ -29,48 +27,45 @@
         </style>
     </head>
     <body>
-      
 	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a  href ='../ServletSport/lister' class="navbar-brand" href=".">Système de gestion des sports</a>
-			</div>
+            <div class="container">
+                <div class="navbar-header">
+                    <a  href ='../ServletAthlete/lister' class="navbar-brand" href=".">Système de gestion des athlètes</a>
 		</div>
+            </div>
 	</nav>
-    <body>
-       <div class="container special">
-            <h2 class="h2">Liste des sports</h2>
-		<div class="table-responsive">
+        <div class="container special">
+            <h2 class="h2">Liste des Sports</h2>
+            <div class="table-responsive">
                 <%
                     ArrayList<Sport> lesSports = (ArrayList)request.getAttribute("sLesSports");
                 %>
                 <table class="table table-striped table-sm">  
-                <thead>
-                    <tr>             
-                        <th>id</th>
-                        <th>discipline</th>                  
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <%
-                            for (Sport s : lesSports)
-                            {              
-                                out.println("<tr><td>");
-                                out.println(s.getId());
-                                out.println("</td>");
+                    <thead>
+                        <tr>             
+                            <th>id</th>
+                            <th>discipline</th>                  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <%
+                                for (Sport s : lesSports)
+                                {              
+                                    out.println("<tr><td>");
+                                    out.println(s.getId());
+                                    out.println("</td>");
 
-                                out.println("<td><a href ='../ServletSport/consulter?idSport="+ s.getId()+ "'>");
-                                out.println(s.getLibelle());
-                                out.println("</a></td>");
-                               
-                            }
-                        %>
-                    </tr>
-                </tbody>
-            </table>
-        </body>
-         </div>
-       </div>
-  
+                                    out.println("<td><a href ='../ServletSport/consulter?idSport="+ s.getId()+ "'>");
+                                    out.println(s.getLibelle());
+                                    out.println("</a></td>");
+
+                                }
+                            %>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>

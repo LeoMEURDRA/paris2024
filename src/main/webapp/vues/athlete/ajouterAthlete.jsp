@@ -13,38 +13,53 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>paris 2024</title>
+        <title>PARIS 2024</title>
+        <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+        <title>Paris 2024</title>
+        <style>
+            body {
+		padding-top: 50px;
+            }
+                .special {
+		padding-top:50px;
+	}
+        </style>
     </head>
     <body>
-        <h1>NOUVEL ATHLETE</h1>
-        
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a  href ='../ServletAthlete/lister' class="navbar-brand" href=".">Système de gestion des athlètes</a>
+		</div>
+            </div>
+	</nav>
+        <div class="container special">
+        <h2 class="h2">Ajouter un Athlète</h2>
             <%
                 FormAthlete form = (FormAthlete)request.getAttribute("form");
             %>
-        
-        <form class="form-inline" action="ajouter" method="POST">
-                <label for="nom">NOM : </label>
-                <input id="nom" type="text" name="nom"  size="30" maxlength="30">
-                </br>
-                            
-                <%-- Champ Liste des pays --%>
-                <label for="pays">Pays : </label>
-                <select name="idPays">
-                    <%
-                        ArrayList<Pays> lesPays= (ArrayList)request.getAttribute("pLesPays");
-                        for (int i=0; i<lesPays.size();i++){
-                            Pays p = lesPays.get(i);
-                            out.println("<option value='" + p.getId()+"'>" + p.getNom()+"</option>" );
-                        }
-                    %>
-                </select>
-                </br>            
-                               
-            <input type="submit" name="valider" id="valider" value="Valider"/>
+            <form class="form-inline" action="ajouter" method="POST">
+                    <label for="nom">Nom : </label>
+                    <input id="nom" type="text" name="nom" size="30" maxlength="30">
+                    </br>
+
+                    <%-- Champ Liste des pays --%>
+                    <label for="pays">Pays : </label>
+                    <select name="idPays">
+                        <%
+                            ArrayList<Pays> lesPays= (ArrayList)request.getAttribute("pLesPays");
+                            for (int i=0; i<lesPays.size();i++){
+                                Pays p = lesPays.get(i);
+                                out.println("<option value='" + p.getId()+"'>" + p.getNom()+"</option>" );
+                            }
+                        %>
+                    </select>
+                    </br>     
+                <input type="submit" name="valider" id="valider" value="Valider"/>
             </form>
-        
-        
-        
-        
+        </div>
     </body>
 </html>
