@@ -25,21 +25,22 @@
             Sport s = (Sport)request.getAttribute("sSport");
             ArrayList<Athlete> lesAthletes = (ArrayList<Athlete>)request.getAttribute("aLesAthletes");
         %>
-        <h1><%  out.println(s.getLibelle());%></h1>  
+        <h1><%  out.println(s.getLibelle());%></h1>
         <h2>Athlètes pratiquant ce sport :</h2>
-        <table border="1">
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Date de Naissance</th>
-            </tr>
-            <% for (Athlete a : lesAthletes) { %>
-                <tr>
-                    <td><a href='../ServletAthlete/consulter?idAthlete=<%= a.getId() %>'><%= a.getNom() %></a></td>
-                    <td><%= a.getPrenom() %></td>
-                    <td><%= a.getDateNaiss() %></td>
-                </tr>
-            <% } %>
-        </table>
+        <% if (lesAthletes != null) {
+            for (Athlete a : lesAthletes) { %>
+                <table border="1">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Date de Naissance</th>
+                    </tr>
+                    <tr>
+                        <td><a href='../ServletAthlete/consulter?idAthlete=<%= a.getId() %>'><%= a.getNom() %></a></td>
+                        <td><%= a.getPrenom() %></td>
+                        <td><%= a.getDateNaiss() %></td>
+                    </tr>
+                </table>
+        <%}}%>
     </body>   
 </html>
