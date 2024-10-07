@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import sio.paris2024.model.Athlete;
+import sio.paris2024.model.Epreuve;
 import sio.paris2024.model.Sport;
 
 /**
@@ -92,6 +93,27 @@ public class DaoSport {
             System.out.println("La requête de getAthletesBySport a généré une erreur");
         }
         return lesAthletes;
+    }
+    
+    public static ArrayList<Epreuve> getEpreuvesBySport(Connection cnx, int idSport) {
+        ArrayList<Epreuve> lesEpreuves = new ArrayList<Epreuve>();
+        try {
+            requeteSql = cnx.prepareStatement("select a.id as a_id, a.nom as a_nom, a.prenom as a_prenom, a.datenaiss as a_datenaiss from athlete a inner join sport s on a.sport_id = s.id inner join pays p on a.pays_id = p.id where a.sport_id = ?");
+            requeteSql.setInt(1, idSport);
+            resultatRequete = requeteSql.executeQuery();
+
+            while (resultatRequete.next()) {
+                Epreuve e = new Epreuve();
+                e.setId(resultatRequete.getInt("e_id"));
+                e.setNom(resultatRequete.getString("e_nom"));
+                
+                lesEpreuves.add(e);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("La requête de getAthletesBySport a généré une erreur");
+        }
+        return lesEpreuves;
     }
     
     public static Sport addSport(Connection connection, Sport spo){      
